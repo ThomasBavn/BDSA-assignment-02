@@ -8,7 +8,7 @@ public record Wizard(string Name, string Medium, int? Year, string Creator);
 
 public class WizardCollection : IEnumerable<Wizard>
 {
-    private WizardCollection() {}
+    private WizardCollection() { }
 
     public static WizardCollection Create() => new WizardCollection();
 
@@ -23,4 +23,7 @@ public class WizardCollection : IEnumerable<Wizard>
     public IEnumerator<Wizard> GetEnumerator() => Read.Value.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+
+
 }

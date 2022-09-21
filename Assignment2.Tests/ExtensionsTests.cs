@@ -47,14 +47,16 @@ public class ExtensionsTests
     }
 
     [Fact]
-    public void IsSecure_true(){ 
+    public void IsSecure_true()
+    {
         var uri = new Uri("https://www.google.com");
         var actual = uri.IsSecure();
         actual.Should().BeTrue();
     }
 
     [Fact]
-    public void IsSecure_false(){ 
+    public void IsSecure_false()
+    {
         var uri = new Uri("http://www.google.com");
         var actual = uri.IsSecure();
         actual.Should().BeFalse();
@@ -67,5 +69,51 @@ public class ExtensionsTests
         var actual = input.WordCount();
         actual.Should().Be(2);
     }
+
+    [Fact]
+    public void Wizards_By_Rowling_Extension()
+    {
+        var wizards = WizardCollection.Create();
+
+        var expected = new[] { "Harry Potter", "Harry Potter", "Albus Dumbledore", "Lord Voldemort", "Hermione Granger", "Ron Weasley" };
+
+        var actual = wizards.WizardsByRowlingExtension();
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void First_Sith_By_Year()
+    {
+        var wizards = WizardCollection.Create();
+
+        var expected = 1977;
+        var actual = wizards.FirstSithExtension();
+
+        Assert.Equal(expected, actual);
+    }
+
+    [Fact]
+    public void Distinct_Harry_Potter_Characters_Extension()
+    {
+        var wizards = WizardCollection.Create();
+
+        var expected = new[] { ("Harry Potter", 1997), ("Albus Dumbledore", 1997), ("Lord Voldemort", 1997), ("Hermione Granger", 1997), ("Ron Weasley", 1997) };
+
+        var actual = wizards.DistinctHarryPotterCharactersExtension();
+        actual.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public void Wizards_Ordered_By_Creator()
+    {
+        var wizards = WizardCollection.Create();
+
+        var expected = new[] { "Merlin", "Dr. Strange", "Sauron", "Saruman the White", "Radagast the Brown", "Morgoth", "Gandalf", "Galadriel", "Ron Weasley", "Lord Voldemort", "Hermione Granger", "Harry Potter", "Harry Potter", "Albus Dumbledore", "Darth Vader", "Darth Sidious", "Darth Maul" };
+        var actual = wizards.WizardsOrderedByCreatorExtension();
+
+        actual.Should().BeEquivalentTo(expected);
+
+    }
+
 
 }
